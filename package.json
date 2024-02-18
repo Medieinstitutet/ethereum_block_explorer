@@ -1,0 +1,27 @@
+{
+  "name": "ethereum_block_explorer",
+  "version": "1.0.0",
+  "description": "An application that can check users balances, send transactions to the network and check the amount of blocks currently on the chain",
+  "scripts": {
+    "dev": "tsc --watch"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Markus Bielaszka",
+    "email": "69858432+Markus-55@users.noreply.github.com"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Medieinstitutet/ethereum_block_explorer.git"
+  },
+  "dependencies": {
+    "typescript": "^5.3.3",
+    "web3": "^4.5.0"
+  },
+  "homepage": "https://github.com/Medieinstitutet/ethereum_block_explorer#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.20.0"
+  }
+}

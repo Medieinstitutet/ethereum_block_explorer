@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.5.0/web3.min.js"
+    integrity="sha512-FhAl50BpK3gf9K//lbAWek9EEQEtGQyyXZNc1fuwcC2tVf2cskiJBcumXY0zJksYtms6S5cqubp1MNfUYTkO2A=="
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer">
+  </script>
+  <title>Document</title>
+</head>
+<body>
+
+  <button id="connect">connect to metamask</button>
+
+  <div>
+    <h1>Get Balance:</h1>
+    
+    <label for="ethAddress">User address</label>
+    <input type="text" id="ethAddress">
+    <button id="getBalanceBtn">Get balance</button>
+    <p id="displayBalance"></p>
+    <p id="transactions"></p>
+  </div>
+  
+  <div>
+    <h1>Send Eth:</h1>
+      <label for="value">Amout:</label>
+      <input type="text" id="value">
+
+      <label for="fromAddress">From address</label>
+      <input type="text" id="fromAddress">
+      
+      <label for="toAddress">To Address</label>
+      <input type="text" id="toAddress">
+      
+      <button id="sendEth">Send eth</button>
+      <p id="displayBlocks"></p>
+  </div>
+  
+  <script type="module" src="/dist/main.js"></script>
+  <script type="module" src="/dist/connectWeb3.js"></script>
+</body>
+</html>
