@@ -1,46 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script 
-    src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.5.0/web3.min.js"
-    integrity="sha512-FhAl50BpK3gf9K//lbAWek9EEQEtGQyyXZNc1fuwcC2tVf2cskiJBcumXY0zJksYtms6S5cqubp1MNfUYTkO2A=="
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer">
-  </script>
-  <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.5.0/web3.min.js"
+      integrity="sha512-FhAl50BpK3gf9K//lbAWek9EEQEtGQyyXZNc1fuwcC2tVf2cskiJBcumXY0zJksYtms6S5cqubp1MNfUYTkO2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <link
+      href="./output.css"
+      rel="stylesheet" />
+    <title>Document</title>
+  </head>
 
-  <button id="connect">connect to metamask</button>
+  <body>
 
-  <div>
-    <h1>Get Balance:</h1>
     
-    <label for="ethAddress">User address</label>
-    <input type="text" id="ethAddress">
-    <button id="getBalanceBtn">Get balance</button>
-    <p id="displayBalance"></p>
-    <p id="transactions"></p>
-  </div>
-  
-  <div>
-    <h1>Send Eth:</h1>
-      <label for="value">Amout:</label>
-      <input type="text" id="value">
+    <div class="flex flex-col m-11">
+      <button id="connect" class="dark:border-gray-800 rounded-lg border bg-card text-card-foreground shadow-sm w-[400px] mx-auto">connect to metamask</button>
+      <div
+        class="dark:border-gray-800 rounded-lg border bg-card text-card-foreground shadow-sm w-[400px] mx-auto"
+        data-v0-t="card">
+        <div class="p-6 flex flex-col items-center space-y-2">
+          <h3
+            class="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
+            Check Balance
+          </h3>
+          <p class="text-sm text-muted-foreground">
+            Enter your Ethereum wallet address to check your balance
+          </p>
+        </div>
+        <div class="p-6 space-y-4">
+          <input
+            id="ethAddress"
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            placeholder="Enter your wallet address" />
+          <button
+            id="getBalanceBtn"
+            class="shadow-md inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+            Check Balance
+          </button>
+          <div className="space-y-2">
+            <h1 className="text-3xl font-bold">Ether Balance:</h1>
+            <p className="text-gray-500 dark:text-gray-400"></p>
+          </div>
+        </div>
+      </div><br>
 
-      <label for="fromAddress">From address</label>
-      <input type="text" id="fromAddress">
-      
-      <label for="toAddress">To Address</label>
-      <input type="text" id="toAddress">
-      
-      <button id="sendEth">Send eth</button>
-      <p id="displayBlocks"></p>
-  </div>
-  
-  <script type="module" src="/dist/main.js"></script>
-  <script type="module" src="/dist/connectWeb3.js"></script>
-</body>
+      <div class="flex items-center justify-center h-full">
+        <div
+          class="bg-white rounded-lg p-6 space-y-6 border border-gray-200 dark:border-gray-800 w-full max-w-md">
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="fromAddress">
+                From address:
+              </label>
+              <input
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                id="fromAddress"
+                placeholder="Enter the from Ethereum address"
+                type="text" />
+
+                <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="toAddress">
+                Recipient:
+              </label>
+              <input
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                id="toAddress"
+                placeholder="Enter the recipient's Ethereum address"
+                type="text" />               
+            </div>
+
+            <div class="space-y-2">
+              <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="value">
+                Amount:
+              </label>
+              <input
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                id="value"
+                placeholder="Enter the amount of Ether to send"
+                type="text" />
+            </div>
+            <button
+              id="sendEth"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+              Send
+            </button>
+            <div className="space-y-2">
+              <p id="displayBlocks" className="text-gray-500 dark:text-gray-400"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="/dist/main.js"></script>
+    <script
+      type="module"
+      src="/dist/connectWeb3.js"></script>
+  </body>
 </html>
