@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsc --watch",
     "test": "vitest --watch",
-    "tailwindcss": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+    "tailwindcss": "npx tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch"
   },
   "keywords": [],
   "author": {
