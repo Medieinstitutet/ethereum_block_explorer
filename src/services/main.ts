@@ -7,6 +7,15 @@ interface Transaction {
   gas: string;
 }
 
+class Transaction {
+  constructor(from: string, to: string, value: number, gas: string) {
+    this.from = from,
+    this.to = to,
+    this.value = value,
+    this.gas = gas
+  }
+}
+
 const ethAddress: HTMLInputElement | null = document.querySelector('#ethAddress');
 const getBalanceBtn: HTMLButtonElement | null = document.querySelector('#getBalanceBtn');
 const displayBalance: HTMLParagraphElement | null = document.querySelector('#displayBalance');
@@ -35,17 +44,12 @@ async function getBalance(account: string): Promise<number> {
   return balance;
 }
 
-async function sendEthTransaction(to: string, from: string, amount: number): Promise<Transaction> {
-  const tranaction: Transaction = {
-    from: from,
-    to: to,
-    value: amount,
-    gas: await web3.eth.estimateGas()
-  }
+async function sendEthTransaction(to: string, from: string, amount: number, gas: string): Promise<Transaction> {
+  const transaction: Transaction = new Transaction(from, to, amount, gas);
 
   try {
     const blockAmount = Number(await web3.eth.getBlockNumber());
-    const sendTrx = await web3.eth.sendTransaction(tranaction);
+    const sendTrx = await web3.eth.sendTransaction(transaction);
 
     if(displayBlocks) displayBlocks.innerHTML = `Amount of blocks when tranaction was made: ${blockAmount.toString()} `;
     
@@ -55,8 +59,8 @@ async function sendEthTransaction(to: string, from: string, amount: number): Pro
     console.log(err);
   }
 
-  console.log(tranaction);
-  return tranaction;
+  console.log(transaction);
+  return transaction;
 }
 
 getBalanceBtn?.addEventListener('click', async () => {
@@ -68,8 +72,9 @@ sendTransactionBtn?.addEventListener('click', async () => {
   const amount: number = Number(web3.utils.toWei(valueInput?.value, 'ether'));
   const toAddress: string | undefined = toAddressInput?.value as string;
   const fromAddress: string | undefined = fromAddressInput?.value as string;
+  const gas: string = await web3.eth.estimateGas();
 
-  await sendEthTransaction(toAddress, fromAddress, amount);
+  await sendEthTransaction(toAddress, fromAddress, amount, gas);
 });
 
 document.addEventListener('DOMContentLoaded', initApp);
