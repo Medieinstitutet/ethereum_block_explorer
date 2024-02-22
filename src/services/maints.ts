@@ -1,10 +1,9 @@
-let web3: any;
-if (typeof window !== 'undefined') {
-    web3 = (window as any).ethereum;
-} else {
-    console.error('Error: ethereum is not available.');
-    web3 = null;
-}
+/* I tried to use ts file with web3.ts and metamask ethereum.request but I was only
+errors in the TDD so switched to js file.
+But at least I tried.
+*/
+
+export const web3 = new Web3('http://127.0.0.1:8545/');
 
 interface Transaction {
   from: string;
@@ -37,20 +36,26 @@ function initApp() {
   console.log(web3);
 }
 
-async function getBalance(account: string): Promise<number> {
-  const balance: number = await web3.eth.getBalance(account);
-  const fromWei = await web3.utils.fromWei(balance, 'ether')
+let acccounts;
 
+export async function getBalance(account: string): Promise<void> {
+  // const balance: number = await web3.eth.getBalance(account);
+  // const fromWei = await web3.utils.fromWei(balance, 'ether')
 
-  try {
-    if(displayBalance) displayBalance.innerHTML = `${web3.utils.fromWei(balance, 'ether')} ETH`;
-  } catch(err) {
-    console.log(err);
+  if (typeof ethereum !== undefined) {
+    try {
+      acccounts = await ethereum.request({ method: 'eth_requestAccounts' });
+      // if(displayBalance) displayBalance.innerHTML = `${web3.utils.fromWei(balance, 'ether')} ETH`;
+    } catch(err) {
+      console.log(err);
+    }
+  } else {
+    console.log('No ethereum');
   }
   
-  console.log(balance);
-  console.log(fromWei);
-  return fromWei;
+  // console.log(balance);
+  // console.log(fromWei);
+  // return fromWei;
 }
 
 async function sendEthTransaction(to: string, from: string, amount: number, gas: string): Promise<Transaction> {

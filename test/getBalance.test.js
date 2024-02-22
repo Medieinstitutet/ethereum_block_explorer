@@ -1,23 +1,21 @@
-import { expect, test } from 'vitest';
+import { getBalance } from '../src/services/getBalance.js';
+import { expect,test } from 'vitest';
 
-let web3;
-if (typeof window !== 'undefined') {
-    web3 = (window).ethereum;
-} else {
-    console.error('Error: ethereum is not available.');
-    web3 = null;
-}
+test('getBalance function returns a balance greater than 0', async () => {
+  // Mock the ethereum object
+  global.ethereum = {
+    request: async (params) => {
+      if (params.method === 'eth_requestAccounts') {
+        return ['0xAccount123'];
+      } else if (params.method === 'eth_getBalance') {
+        return '0x123'; // Mock balance response
+      }
+    }
+  };
 
-async function getBalance(account) {
-  const balance = await web3.eth.getBalance(account);
-  const fromWei = await web3.utils.fromWei(balance, 'ether')
-  
-  console.log(balance);
-  return fromWei;
-}
+  // Call the getBalance function with a mock account address
+  const balance = await getBalance('0xAccount123');
 
-test('should be type of object', () => {
-  expect(getBalance('0x143BC0b89403a4DD6A3Db15Bd5090F4a19C4be1C')).toBeTypeOf('object');
+  // Assert that the balance is greater than 0
+  expect(balance).toBeGreaterThan(0);
 });
-
-
