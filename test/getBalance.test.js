@@ -1,5 +1,4 @@
 import { expect, test } from 'vitest';
-import { getBalance } from '../src/services/main.ts'
 
 let web3;
 if (typeof window !== 'undefined') {

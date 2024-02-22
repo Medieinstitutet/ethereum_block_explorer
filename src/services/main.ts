@@ -1,4 +1,10 @@
-const web3 = new Web3(window.ethereum);
+let web3: any;
+if (typeof window !== 'undefined') {
+    web3 = (window as any).ethereum;
+} else {
+    console.error('Error: ethereum is not available.');
+    web3 = null;
+}
 
 interface Transaction {
   from: string;
@@ -80,4 +86,4 @@ sendTransactionBtn?.addEventListener('click', async () => {
   await sendEthTransaction(toAddress, fromAddress, amount, gas);
 });
 
-document.addEventListener('DOMContentLoaded', initApp);
+if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', initApp);
