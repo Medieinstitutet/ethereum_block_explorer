@@ -33,6 +33,8 @@ function initApp() {
 
 async function getBalance(account: string): Promise<number> {
   const balance: number = await web3.eth.getBalance(account);
+  const fromWei = await web3.utils.fromWei(balance, 'ether')
+
 
   try {
     if(displayBalance) displayBalance.innerHTML = `${web3.utils.fromWei(balance, 'ether')} ETH`;
@@ -41,7 +43,8 @@ async function getBalance(account: string): Promise<number> {
   }
   
   console.log(balance);
-  return balance;
+  console.log(fromWei);
+  return fromWei;
 }
 
 async function sendEthTransaction(to: string, from: string, amount: number, gas: string): Promise<Transaction> {
