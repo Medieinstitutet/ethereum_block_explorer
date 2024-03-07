@@ -1,5 +1,5 @@
-import { getBalance } from '../src/js/getBalance.js';
-import { expect,test } from 'vitest';
+import { getBalance } from '../src/components/ethereum/getBalance';
+import { expect, test } from 'vitest';
 
 test('getBalance function returns a balance greater than 0', async () => {
   // Mock the ethereum object

@@ -1,6 +1,6 @@
-const connectButton: HTMLButtonElement | null = document.querySelector('#connect');
+const connectButton = document.querySelector('#connect');
 
-async function connect(): Promise<void> {
+async function connect() {
   try {
     if(typeof window.ethereum !== undefined) {
       console.log('Connected to ethereum');
@@ -14,4 +14,4 @@ async function connect(): Promise<void> {
   }
 }
 
-connectButton?.addEventListener('click', connect);
+connectButton.addEventListener('click', connect);
